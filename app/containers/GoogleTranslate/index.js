@@ -19,6 +19,7 @@ import NavButton from 'components/NavButton';
 import NavTabs from 'components/NavTabs';
 import ActionTextArea from 'components/ActionTextArea';
 import styled from 'styled-components';
+import { PostApi } from 'utils/request';
 import makeSelectGoogleTranslate from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -29,6 +30,7 @@ import MeaningCard from './MeaningCard';
 import SymsCard from './SymsCard';
 import TransCard from './TransCard';
 import FooterBar from './FooterBar';
+
 const Flex = styled.div`
   display: flex;
 `;
@@ -102,12 +104,12 @@ export class GoogleTranslate extends React.Component {
         input: event.target.value,
       },
       () => {
-        // PostApi('http://localhost:8081/getData', {
-        //   text: this.state.input,
-        // }).then(res => {
-        //   console.log(res);
-        //   this.setState(res);
-        // });
+        PostApi('http://localhost:8081/getData', {
+          text: this.state.input,
+        }).then(res => {
+          console.log(res);
+          this.setState(res);
+        });
       },
     );
   }
@@ -116,7 +118,7 @@ export class GoogleTranslate extends React.Component {
     return (
       <Root>
         <Helmet>
-          <title>GoogleTranslate</title>
+          <title>Dat - Google Translate</title>
           <meta name="description" content="Description of GoogleTranslate" />
         </Helmet>
         <GoogleHeader />
